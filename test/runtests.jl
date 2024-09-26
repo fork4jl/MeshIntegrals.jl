@@ -79,7 +79,7 @@ function autotest(item::SupportItem)
         test_name = "[$(item.name)] $method-$alg"
         @testset verbose=true showtiming=true "$test_name" begin
             @show Random.GLOBAL_SEED;
-            for _ in 1:4
+            for _ in 1:(6*5)  # 5min
                 integraltest(method, item.geometry, alg, methodsupport && algsupport, item.type)
             end
         end
