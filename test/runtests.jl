@@ -75,15 +75,15 @@ function autotest(item::SupportItem)
     itemsupport = Iterators.product(method_set,algorithm_set)
 
     # For each enabled solver type, run the test suite
-    @testset verbose=true "$(item.name)" begin
-        for ((method,methodsupport), (alg,algsupport)) in itemsupport
+    for ((method,methodsupport), (alg,algsupport)) in itemsupport
+        test_name = "[$(item.name)] $method-$alg-$(item.geometry)"
+        @testset verbose=true showtiming=true test_name begin
             integraltest(method, item.geometry, alg, methodsupport && algsupport, item.type)
         end
     end
 end
-    
 
-@testset "Integrals" begin
+begin
     # Spatial descriptors
     origin3d(T) = Point(T(0), T(0), T(0))
     origin2d(T) = Point(T(0), T(0))
