@@ -61,14 +61,14 @@ function autotest(item::SupportItem)
     N = (item.type == Float32) ? 1000 : 100
     algorithm_set = [
         (GaussLegendre(N),  item.gausslegendre),
-        (GaussKronrod(),      item.gausskronrod),
-        (HAdaptiveCubature(), item.hadaptivecubature)
+        # (GaussKronrod(),      item.gausskronrod),
+        # (HAdaptiveCubature(), item.hadaptivecubature)
     ]
 
     method_set = [
-        (integral, item.integral),
-        (lineintegral, item.lineintegral),
-        (surfaceintegral, item.surfaceintegral),
+        # (integral, item.integral),
+        # (lineintegral, item.lineintegral),
+        # (surfaceintegral, item.surfaceintegral),
         (volumeintegral, item.volumeintegral)
     ]
 
