@@ -76,7 +76,7 @@ function autotest(item::SupportItem)
 
     # For each enabled solver type, run the test suite
     for ((method,methodsupport), (alg,algsupport)) in itemsupport
-        test_name = "[$(item.name)] $method-$alg-$(item.geometry)"
+        test_name = "[$(item.name)] $method-$alg"
         @testset verbose=true showtiming=true "$test_name" begin
             integraltest(method, item.geometry, alg, methodsupport && algsupport, item.type)
         end
