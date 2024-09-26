@@ -75,7 +75,7 @@ function autotest(item::SupportItem)
     itemsupport = Iterators.product(method_set,algorithm_set)
 
     # For each enabled solver type, run the test suite
-    @testset "$(item.name)" begin
+    @testset verbose=true "$(item.name)" begin
         for ((method,methodsupport), (alg,algsupport)) in itemsupport
             integraltest(method, item.geometry, alg, methodsupport && algsupport, item.type)
         end
@@ -83,7 +83,7 @@ function autotest(item::SupportItem)
 end
     
 
-@testset verbose=true "Integrals" begin
+@testset "Integrals" begin
     # Spatial descriptors
     origin3d(T) = Point(T(0), T(0), T(0))
     origin2d(T) = Point(T(0), T(0))
@@ -139,9 +139,9 @@ end
         # SupportItem("Torus{$T}", T, torus(T),               1, 0, 1, 0,   1, 1, 1),
     ]
 
-    @testset "Float64 Geometries" begin
+    # @testset "Float64 Geometries" begin
         map(autotest, SUPPORT_MATRIX(Float64))
-    end
+    # end
 end
 
     
