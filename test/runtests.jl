@@ -3,7 +3,7 @@ using Meshes
 using MeshIntegrals
 using Test
 using Unitful
-
+using Random
 
 ################################################################################
 #                                Aqua.jl Tests
@@ -78,6 +78,7 @@ function autotest(item::SupportItem)
     for ((method,methodsupport), (alg,algsupport)) in itemsupport
         test_name = "[$(item.name)] $method-$alg"
         @testset verbose=true showtiming=true "$test_name" begin
+            @show Random.GLOBAL_SEED;
             integraltest(method, item.geometry, alg, methodsupport && algsupport, item.type)
         end
     end
